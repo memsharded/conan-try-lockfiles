@@ -53,6 +53,7 @@ if __name__ == '__main__':
     assert "flac/3.0: WARN: Can't find a 'flac/3.0' package" in t.out
 
     # Conan can know which flac/* has binaries available and matches the version range, and can retrieve the lockfiles (stored together with the binary)
+    #   - this would be the result of a search query + version-ranges match:
     flac_available = [(f"flac/{v}", lck) for v, lck in zip(flac_versions, flac_locks)]
     #   - iterate existing binaries, choose the first one valid
     for version, flac_lock in flac_available:
@@ -60,7 +61,6 @@ if __name__ == '__main__':
         try:
             t.run(f"lock create --reference=consumer_libsndfile/1.0@ --lockfile={flac_lock} --lockfile-out=tmp")
             t.run(f"{cmd} --lockfile=tmp --lockfile-out=tmp2")
-            #t.run(f"install consumer_libsndfile/1.0@ --lockfile=tmp --lockfile-out=tmp2 --build=libsndfile --build=consumer_libsndfile")
         except Exception as e:
             sys.stdout.write(f" - no: {e}\n")
         else:
