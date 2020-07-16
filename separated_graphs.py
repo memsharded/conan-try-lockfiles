@@ -20,8 +20,10 @@ if __name__ == '__main__':
     t.run(f"create {me}/recipes/flac.py flac/1.0@")
     t.run(f"create {me}/recipes/vorbis.py vorbis/1.0@")
 
+    # Create graphs for different branches
     t.run(f"lock create --reference flac/1.0@ --lockfile-out=flac_1.0.lock")
     t.run(f"lock create --reference vorbis/1.0@ --lockfile-out=vorbis_1.0.lock")
 
+    # NO: Use two lockfiles to build a consumer one
     t.save({'conanfile.txt': "[requires]\nflac/1.0\nvorbis/1.0\n"})
     t.run(f"lock create conanfile.txt --lockfile=flac_1.0.lock --lockfile=vorbis_1.0.lock --lockfile-out=project.lock")

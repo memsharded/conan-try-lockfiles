@@ -1,0 +1,2 @@
+[requires]
+libsndfile/[>=0.0]
