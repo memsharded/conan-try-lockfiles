@@ -24,12 +24,12 @@ if __name__ == '__main__':
     # Populate the cache
     t.run(f"export {me}/recipes/pyreq.py pyreq/0.1@")
     t.run(f"create {me}/recipes/ogg.py ogg/0.0@")
-    t.run(f"create {me}/recipes/flac.py flac/1.0@ --lockfile-out=flack_1.0-ogg_0.0.lock")
-    flac_binaries_in_cache.append(('flack/1.0', 'flack_1.0-ogg_0.0.lock'))
+    t.run(f"create {me}/recipes/flac.py flac/1.0@ --lockfile-out=flac_1.0-ogg_0.0.lock")
+    flac_binaries_in_cache.append(('flac/1.0', 'flac_1.0-ogg_0.0.lock'))
     
     t.run(f"create {me}/recipes/ogg.py ogg/1.0@")
-    t.run(f"create {me}/recipes/flac.py flac/1.0@ --lockfile-out=flack_1.0-ogg_1.0.lock")
-    flac_binaries_in_cache.append(('flack/1.0', 'flack_1.0-ogg_1.0.lock'))
+    t.run(f"create {me}/recipes/flac.py flac/1.0@ --lockfile-out=flac_1.0-ogg_1.0.lock")
+    flac_binaries_in_cache.append(('flac/1.0', 'flac_1.0-ogg_1.0.lock'))
     
     t.run(f"create {me}/recipes/vorbis.py vorbis/1.0@")
     t.run(f"create {me}/recipes/libsndfile.py libsndfile/1.0@")
