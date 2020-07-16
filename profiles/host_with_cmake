@@ -1,0 +1,4 @@
+include(default)
+
+[build_requires]
+cmake/[>=0.0]
