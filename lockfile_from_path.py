@@ -35,4 +35,5 @@ if __name__ == '__main__':
     t.run(f"lock create {me}/recipes/consumer_noname.py --lockfile-out=output.lock --name=name --version=version")
     t.run(f"create {me}/recipes/consumer_noname.py consumer_libsndfile/1.0@ --lockfile=output.lock", assert_error=True)  # Mismatch name/version
     t.run(f"create {me}/recipes/consumer_noname.py  --lockfile=output.lock", assert_error=True)  # Cannot create without name/version. TODO: Take from lockfile?
+    t.run(f"create {me}/recipes/consumer_noname.py name/version@ --lockfile=output.lock")
     t.run(f"install {me}/recipes/consumer_noname.py name/version@ --lockfile=output.lock")
