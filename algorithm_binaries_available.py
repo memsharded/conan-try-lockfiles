@@ -4,14 +4,17 @@ import sys
 from conans.test.utils.tools import NO_SETTINGS_PACKAGE_ID, TestClient
 from conans import tools
 
-me = os.path.abspath(os.path.dirname(__file__))
+me = os.path.abspath(os.path.dirname(__file__)).replace("\\", "/")
+
 
 if __name__ == '__main__':
     # Configure a test client to play with
-    working_dir = os.path.join(me, '_working_dir')
-    shutil.rmtree(working_dir)
+    current_folder = os.path.join(me, '_working_dir')
+    if os.path.exists(current_folder):
+        shutil.rmtree(current_folder)
+    os.makedirs(current_folder)
 
-    t = TestClient(path_with_spaces=False, current_folder=working_dir)
+    t = TestClient(path_with_spaces=False, current_folder=current_folder)
     t.run("config set general.default_package_id_mode=recipe_revision_mode")
     t.run("config set general.revisions_enabled=1")
 
@@ -75,6 +78,6 @@ if __name__ == '__main__':
     sys.stdout.write("\n")
     sys.stdout.write(f"Successful lockfile in '{lockfile_selected}'\n")
 
-    content = tools.load(os.path.join(working_dir, lockfile_selected))
+    content = tools.load(os.path.join(current_folder, lockfile_selected))
     assert "flac/1.0" in content
     assert "ogg/1.0" in content
