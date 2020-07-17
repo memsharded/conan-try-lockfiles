@@ -4,8 +4,7 @@ import sys
 from conans.test.utils.tools import NO_SETTINGS_PACKAGE_ID, TestClient
 from conans import tools
 
-me = os.path.abspath(os.path.dirname(__file__)).replace("\\", "/")
-
+me = os.path.abspath(os.path.dirname(__file__))
 
 if __name__ == '__main__':
     # Configure a test client to play with
@@ -76,6 +75,6 @@ if __name__ == '__main__':
     sys.stdout.write("\n")
     sys.stdout.write(f"Successful lockfile in '{lockfile_selected}'\n")
 
-    content = tools.load(os.path.join(current_folder, lockfile_selected))
+    content = tools.load(os.path.join(working_dir, lockfile_selected))
     assert "flac/1.0" in content
     assert "ogg/1.0" in content
