@@ -9,7 +9,7 @@ me = os.path.abspath(os.path.dirname(__file__))
 if __name__ == '__main__':
     # Configure a test client to play with
     working_dir = os.path.join(me, '_working_dir')
-    shutil.rmtree(working_dir)
+    shutil.rmtree(working_dir, ignore_errors=True)
 
     t = TestClient(path_with_spaces=False, current_folder=working_dir)
     t.run("config set general.default_package_id_mode=recipe_revision_mode")
